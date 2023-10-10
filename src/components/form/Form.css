@@ -3,19 +3,20 @@
   margin: 10px;
   border-radius: 5px;
   box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.07);
-  padding: 10px;
+  padding: 10px 20px;
   background-color: rgba(225, 225, 225, 0.3);
+  margin: 5% 20%;
 }
 .single-field {
   display: flex;
   /* justify-content: ; */
   align-items: center;
-  margin: 10px;
   width: 100%;
+  margin-top: 10px;
 }
 .single-field label {
   text-transform: capitalize;
-  width: 10%;
+  width: 30%;
 }
 
 .single-field .form {
@@ -24,6 +25,20 @@
   font-size: 16px;
 }
 
+.single-field .dropdown {
+  width: 85%;
+}
+
 .single-field button {
   margin-left: 20px;
+}
+
+.input-error {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.input-error .err-msg {
+  height: 10px;
 }

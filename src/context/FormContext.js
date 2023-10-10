@@ -1,14 +1,22 @@
-import { createContext, useEffect, useReducer } from 'react';
-import FormReducer from './FormReducer';
+import { createContext, useEffect, useState } from 'react';
 
 export const FormContext = createContext();
 
 const FormContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(FormReducer, null);
+  const INITIAL_STATE = JSON.parse(localStorage.getItem('users'))
+    ? JSON.parse(localStorage.getItem('users'))
+    : [];
+  const [formState, setFormState] = useState(INITIAL_STATE);
 
-  useEffect(() => {});
+  useEffect(() => {
+    localStorage.setItem('users', JSON.stringify(formState));
+  }, [formState]);
 
-  return <FormContext.Provider>{children}</FormContext.Provider>;
+  return (
+    <FormContext.Provider value={{ formState, setFormState }}>
+      {children}
+    </FormContext.Provider>
+  );
 };
 
 export default FormContextProvider;

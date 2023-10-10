@@ -9,18 +9,28 @@ const DropDown = ({
   id,
   handleChange,
   placeholder,
+  required
 }) => {
   return (
-    <select name={name} id={id} onChange={(e) => handleChange(e)}>
-      <option value="none" selected disabled>
-        {placeholder}
-      </option>
-      {labels.map((label, index) => (
-        <option key={index} value={label}>
-          {label}
+    <div className="dropDown">
+      <select
+        className={className}
+        name={name}
+        id={id}
+        type={type}
+        onChange={(e) => handleChange(e)}
+        required = {required}
+      >
+        <option value="none" selected disabled>
+          {placeholder}
         </option>
-      ))}
-    </select>
+        {labels.map((label, index) => (
+          <option key={index} value={label}>
+            {label}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

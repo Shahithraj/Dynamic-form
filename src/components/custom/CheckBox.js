@@ -8,6 +8,7 @@ const CheckBox = ({
   value,
   labels,
   handleChange,
+  required,
 }) => {
   return (
     <div className="checkbox-container">
@@ -19,6 +20,7 @@ const CheckBox = ({
             name={name}
             value={label}
             onChange={(e) => handleChange(e)}
+            required={required}
           />
           <label htmlFor={label}>{label}</label>
         </div>

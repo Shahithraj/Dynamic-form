@@ -38,7 +38,8 @@ button:active {
   font-size: 12px;
 }
 input,
-select,textarea {
+select,
+textarea {
   width: 100%;
   outline: none;
   padding: 10px;
@@ -56,19 +57,35 @@ select option {
 .radio-container {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .checkbox-form,
 .radio-form {
   display: flex;
-  width: 80%;
+  margin: 0 10px;
 }
-.checkbox-form input,
+/* .checkbox-form input,
 .radio-form input {
   width: 10%;
-}
+} */
 
 .checkbox-form label,
 .radio-form label {
   width: 90% !important;
+}
+
+.text-area,
+.input,
+.dropDown {
+  width: 100%;
+}
+
+.required {
+  color: red;
+  font-size: 18px;
+}
+
+input:focus {
+  border: 2px solid #007bff;
 }

@@ -8,17 +8,21 @@ const Input = ({
   type,
   value,
   handleChange,
+  required,
 }) => {
   return (
-    <input
-      className={className}
-      id={id}
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      onChange={(e) => handleChange(e)}
-    />
+    <div className="input">
+      <input
+        className={className}
+        id={id}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        required={required}
+        onChange={(e) => handleChange(e)}
+      />
+    </div>
   );
 };
 

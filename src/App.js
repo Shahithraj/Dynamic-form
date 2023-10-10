@@ -4,10 +4,11 @@ import CreateField from './components/createField/CreateField';
 import { useState } from 'react';
 import Form from './components/form/Form';
 import Modal from './components/modal/Modal';
+import ShowData from './components/showData/ShowData';
 
 function App() {
   const [fields, setFields] = useState([]);
-
+  const [json, setJson] = useState({});
   const [openModal, setOpenModal] = useState(false);
   return (
     <div className="App">
@@ -16,8 +17,11 @@ function App() {
         fields={fields}
         setFields={setFields}
         setOpenModal={setOpenModal}
+        setJson={setJson}
       />
-      {fields.length > 0 && <Form fields={fields} setFields={setFields} />}
+      {fields.length > 0 && (
+        <Form fields={fields} setFields={setFields} setJson={setJson} />
+      )}
       {openModal && (
         <Modal
           fields={fields}
@@ -25,6 +29,7 @@ function App() {
           setOpenModal={setOpenModal}
         />
       )}
+      {Object.keys(json).length > 0 && <ShowData json={json} />}
     </div>
   );
 }

@@ -8,8 +8,10 @@ const TextArea = ({
   type,
   value,
   handleChange,
+  required
 }) => {
   return (
+    <div className='text-area'>
       <textarea
         className={className}
         id={id}
@@ -18,9 +20,11 @@ const TextArea = ({
         placeholder={placeholder}
         value={value}
         onChange={(e) => handleChange(e)}
+        required = {required}
         cols="50"
         rows="5"
       ></textarea>
+      </div>
   );
 };
 

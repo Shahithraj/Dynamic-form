@@ -45,16 +45,24 @@
 
 .modal-fields {
   display: flex;
-  /* flex-direction: column; */
   flex-wrap: wrap;
+  width: 100%;
 }
 .modal-body-field {
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  width: 45%;
+  padding: 15px 10px;
+  flex-wrap: wrap;
+  width: calc(50% - 20px);
 }
 
+.modal-body-field .label-form {
+  display: flex;
+}
+
+.label-form label {
+  width: 100px;
+}
 .modal-body-field .field-form {
   width: calc(100% - 20px);
 }
@@ -62,34 +70,58 @@
 .modal-btn {
   width: 100%;
   text-align: center;
+  margin: 10px 0px;
 }
 .modal-btn button {
   width: 100px;
 }
-.addValues {
+.addValues-container .addForm {
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
 }
+
+.addValues-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 .single-addForm {
   display: flex;
   flex-direction: column;
   margin: 10px;
+  width: calc(50% - 20px);
 }
-.single-addForm  div {
+.single-addForm > div {
   display: flex;
   align-items: center;
   flex-direction: row;
-  flex-wrap: wrap;
 }
 
-.addValues input {
-  width: 30%;
+.addValues-container input {
+  width: 90%;
 }
 
-.addValues button {
-  width: 10%;
+.addValues-container button {
   display: flex;
   font-size: 12px;
   align-items: center;
   justify-content: center;
 }
 
+.addValues-container .add {
+  width: 100px;
+  height: 40px;
+}
+.minMax-container {
+  display: flex;
+}
+.single-minmax {
+  width: 40%;
+  padding: 10px;
+}
+
+.single-minmax input {
+  width: fit-content;
+}

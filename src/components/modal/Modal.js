@@ -14,6 +14,9 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
     multipleValueIdx: null,
   });
   const [input, setInput] = useState('');
+  const [showMinMax, setShowMinMax] = useState(false);
+  const [multipleValues, setMultipleValues] = useState(['']);
+
   const modalFields = [
     {
       name: 'label',
@@ -24,13 +27,14 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
       name: 'type',
       type: 'dropdown',
       placeholder: 'Choose Type',
-      labels: ['Text', 'Number', 'TextArea', 'Checkbox', 'Radio', 'DropDown'],
+      labels: ['Text', 'TextArea', 'Checkbox', 'Radio', 'DropDown'],
     },
-    // {
-    //   name: 'required',
-    //   type: 'checkbox',
-    //   labels: ['Yes', 'No'],
-    // },
+    {
+      name: 'required',
+      type: 'radio',
+      label: 'Required',
+      labels: ['Yes', 'No'],
+    },
   ];
   const [properties, setProperties] = useState({
     label: '',
@@ -43,14 +47,19 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
     labels: [],
   });
 
-  const [multipleValues, setMultipleValues] = useState(['']);
   const handleProperties = (e) => {
-    const { name, value } = e.target;
-    if (value == 'DropDown') {
-    }
+    let { name, value, type, tagName } = e.target;
     setError('');
+    type = type.toLowerCase();
+    value = value.toLowerCase();
+
     let updatedProperty = { ...properties };
     updatedProperty[name] = value;
+    if (updatedProperty.type == 'text' || updatedProperty.type == 'textarea') {
+      setShowMinMax(true);
+    } else {
+      setShowMinMax(false);
+    }
     setProperties(updatedProperty);
   };
   const getField = (field) => {
@@ -62,6 +71,8 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
             id={field.name}
             type={field.type}
             name={field.name}
+            min={properties[field.min]}
+            max={properties[field.max]}
             value={properties[field.name]}
             placeholder={field.placeholder}
             handleChange={handleProperties}
@@ -85,27 +96,45 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
           <CheckBox className=" checkbox" handleChange={handleProperties} />
         );
       case 'radio':
-        return <Radio className=" radio" handleChange={handleProperties} />;
+        return (
+          <Radio
+            className="form radio"
+            type={field.type}
+            id={field.name}
+            name={field.name}
+            value={field.value}
+            labels={field.labels}
+            handleChange={handleProperties}
+          />
+        );
     }
   };
 
   const handleSave = () => {
     let newErr = { ...error };
-
     if (properties.label.trim() && properties.type) {
-      for (let i = 0; i < multipleValues.length; i++) {
-        let val = multipleValues[i];
-        if (!val) {
-          newErr.multipleValueIdx = i;
-          setError(newErr);
-          return;
+      if (
+        properties.type == 'DropDown' ||
+        properties.type == 'Checkbox' ||
+        properties.type == 'Radio'
+      ) {
+        for (let i = 0; i < multipleValues.length; i++) {
+          let val = multipleValues[i];
+          if (!val) {
+            newErr.multipleValueIdx = i;
+            setError(newErr);
+            return;
+          }
         }
-      }
-      if (multipleValues.length > 1) {
-        properties.labels = [...multipleValues];
+        if (multipleValues.length >= 1 && multipleValues[0] != '') {
+          properties.labels = [...multipleValues];
+        }
       }
 
       let newArray = [...fields];
+      if (properties.min > 0) {
+        properties.required = 'Yes';
+      }
       newArray.push(properties);
       setFields(newArray);
       setOpenModal(false);
@@ -113,7 +142,7 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
       newErr.label = 'Please enter the label';
       setError(newErr);
     } else if (!properties.type) {
-      newErr.type = 'Please choose the label';
+      newErr.type = 'Please choose the type';
       setError(newErr);
     }
   };
@@ -135,13 +164,42 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
           <div className="modal-fields">
             {modalFields.map((field, index) => (
               <div className="modal-body-field">
-                <div className="field-form">{getField(field)}</div>
+                <div className="label-form">
+                  {field?.label && <label>{field?.label} :</label>}
+                  <div className="field-form">{getField(field)}</div>
+                </div>
                 <span className="err-msg">
                   {error[field.name] && error[field.name]}
                 </span>
               </div>
             ))}
           </div>
+          {showMinMax && (
+            <div className="minMax-container">
+              <div className="single-minmax">
+                <label for="minimum">Minimum Value : </label>
+                <Input
+                  id="minimum"
+                  type="text"
+                  placeholder="Enter min value"
+                  value={properties.min}
+                  name="min"
+                  handleChange={handleProperties}
+                />
+              </div>
+              <div className="single-minmax">
+                <label for="minimum">Maximum Value : </label>
+                <Input
+                  id="minimum"
+                  type="text"
+                  placeholder="Enter max value"
+                  value={properties.max}
+                  name="max"
+                  handleChange={handleProperties}
+                />
+              </div>
+            </div>
+          )}
           {(properties.type == 'DropDown' ||
             properties.type == 'Checkbox' ||
             properties.type == 'Radio') && (

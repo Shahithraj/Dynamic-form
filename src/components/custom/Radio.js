@@ -1,8 +1,17 @@
 import React from 'react';
 
-const Radio = ({ className, id, name, type, value, labels, handleChange }) => {
+const Radio = ({
+  className,
+  id,
+  name,
+  type,
+  value,
+  labels,
+  handleChange,
+  required,
+}) => {
   return (
-    <div className='radio-container'>
+    <div className="radio-container">
       {labels.map((label, index) => (
         <div key={index} className="radio-form">
           <input
@@ -11,6 +20,7 @@ const Radio = ({ className, id, name, type, value, labels, handleChange }) => {
             name={name}
             value={label}
             onChange={(e) => handleChange(e)}
+            required={required}
           />
           <label htmlFor={label}>{label}</label>
         </div>

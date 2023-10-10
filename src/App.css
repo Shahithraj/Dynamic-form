@@ -1,38 +1,74 @@
-.App {
+body {
+  font-family: sans-serif;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+button {
+  cursor: pointer;
+  margin: 10px;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 8px;
   color: white;
+  font-size: 15px;
+  transition: transform 0.3s ease;
+  text-transform: capitalize;
+}
+button.danger {
+  background-color: red;
 }
 
-.App-link {
-  color: #61dafb;
+button.save,
+button.add {
+  background-color: green;
+}
+button:hover {
+  opacity: 0.8;
+}
+button:active {
+  transform: scale(1.05);
+}
+.err-msg {
+  color: red;
+  font-size: 12px;
+}
+input,
+select,textarea {
+  width: 100%;
+  outline: none;
+  padding: 10px;
+  border: 1px solid grey;
+  font-size: 15px;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+select option {
+  padding: 5px;
+  text-transform: capitalize;
+}
+
+.checkbox-container,
+.radio-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.checkbox-form,
+.radio-form {
+  display: flex;
+  width: 80%;
+}
+.checkbox-form input,
+.radio-form input {
+  width: 10%;
+}
+
+.checkbox-form label,
+.radio-form label {
+  width: 90% !important;
 }

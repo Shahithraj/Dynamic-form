@@ -10,7 +10,9 @@ const CreateField = ({ fields, setOpenModal, setFields, json }) => {
   return (
     <div className="create-field">
       <Button
-        value={Object.keys(fields).length <= 0 ? `Create new ` : `Add Field`}
+        value={
+          Object.keys(fields).length <= 0 ? `Create new Form` : `Add Field`
+        }
         onclick={addFormField}
       />
     </div>

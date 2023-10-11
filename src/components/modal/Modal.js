@@ -7,7 +7,7 @@ import CheckBox from '../custom/CheckBox';
 import Radio from '../custom/Radio';
 import AddValues from './AddValues';
 
-const Modal = ({ fields, setFields, setOpenModal }) => {
+const Modal = ({ fields, setFields, setOpenModal, setJson }) => {
   const [error, setError] = useState({
     label: '',
     type: '',
@@ -27,7 +27,7 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
       name: 'type',
       type: 'dropdown',
       placeholder: 'Choose Type',
-      labels: ['Text', 'TextArea', 'Checkbox', 'Radio', 'DropDown'],
+      labels: ['Text', 'TextArea', 'Checkbox', 'Radio', 'DropDown', 'Email'],
     },
     {
       name: 'required',
@@ -50,12 +50,13 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
   const handleProperties = (e) => {
     let { name, value, type, tagName } = e.target;
     setError('');
-    type = type.toLowerCase();
-    value = value.toLowerCase();
 
     let updatedProperty = { ...properties };
     updatedProperty[name] = value;
-    if (updatedProperty.type == 'text' || updatedProperty.type == 'textarea') {
+    if (
+      updatedProperty.type.toLowerCase() == 'text' ||
+      updatedProperty.type.toLowerCase() == 'textarea'
+    ) {
       setShowMinMax(true);
     } else {
       setShowMinMax(false);
@@ -113,6 +114,7 @@ const Modal = ({ fields, setFields, setOpenModal }) => {
   const handleSave = () => {
     let newErr = { ...error };
     if (properties.label.trim() && properties.type) {
+      setJson({});
       if (
         properties.type == 'DropDown' ||
         properties.type == 'Checkbox' ||

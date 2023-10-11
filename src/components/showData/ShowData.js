@@ -19,7 +19,7 @@ const ShowData = ({ json }) => {
             <tr>
               {Object.values(json).length > 0 &&
                 Object.values(json).map((value, index) => (
-                  <td key={index}>{value ? value : 'No value'}</td>
+                  <td key={index}>{value ? value : '-'}</td>
                 ))}
             </tr>
           </tbody>

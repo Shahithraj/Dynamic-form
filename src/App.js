@@ -17,7 +17,7 @@ function App() {
         fields={fields}
         setFields={setFields}
         setOpenModal={setOpenModal}
-        setJson={setJson}
+        json={json}
       />
       {fields.length > 0 && (
         <Form fields={fields} setFields={setFields} setJson={setJson} />
@@ -27,6 +27,7 @@ function App() {
           fields={fields}
           setFields={setFields}
           setOpenModal={setOpenModal}
+          setJson = {setJson}
         />
       )}
       {Object.keys(json).length > 0 && <ShowData json={json} />}

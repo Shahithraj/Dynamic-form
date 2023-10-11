@@ -86,6 +86,10 @@ select option {
   font-size: 18px;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   border: 2px solid #007bff;
+}
+textarea {
+  resize: vertical;
 }

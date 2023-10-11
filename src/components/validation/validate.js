@@ -9,13 +9,13 @@ export default function Validate(fieldObj) {
   } else if (type == 'email') {
     if (!value && !value.trim() && required == 'Yes') {
       errors[label] = 'Email is required';
-    } else if (!validateEmail(value)) {
+    } else if (value && value.trim() && !validateEmail(value)) {
       errors[label] = 'Email is invalid';
     }
   } else if (type == 'phone') {
     if (!value && !value.trim() && required == 'Yes') {
       errors[label] = 'Number is required';
-    } else if (!validatePhoneNumber(value)) {
+    } else if (value && value.trim() && !validatePhoneNumber(value)) {
       errors[label] = 'Number is invalid';
     }
   } else if (

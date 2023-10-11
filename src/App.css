@@ -86,6 +86,10 @@ select option {
   font-size: 18px;
 }
 
+.email {
+  text-transform: lowercase;
+}
+
 input:focus,
 textarea:focus {
   border: 2px solid #007bff;

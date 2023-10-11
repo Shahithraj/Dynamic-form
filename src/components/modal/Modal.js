@@ -27,7 +27,15 @@ const Modal = ({ fields, setFields, setOpenModal, setJson }) => {
       name: 'type',
       type: 'dropdown',
       placeholder: 'Choose Type',
-      labels: ['Text', 'TextArea', 'Checkbox', 'Radio', 'DropDown', 'Email'],
+      labels: [
+        'Text',
+        'TextArea',
+        'Checkbox',
+        'Radio',
+        'DropDown',
+        'Email',
+        'Phone',
+      ],
     },
     {
       name: 'required',

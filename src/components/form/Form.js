@@ -48,7 +48,33 @@ const Form = ({ fields, setFields, setJson }) => {
             type={field.type}
             name={field.label}
             value={field.value}
-            placeholder={`Enter  ${field.label}`}
+            placeholder={`Enter ${field.label}`}
+            id={field.label}
+            handleChange={(e) => handleValueChange(e, index)}
+            required={required}
+          />
+        );
+      case 'phone':
+        return (
+          <Input
+            className="form input phone"
+            type={field.type}
+            name={field.label}
+            value={field.value}
+            placeholder={`Enter Phone Number `}
+            id={field.label}
+            handleChange={(e) => handleValueChange(e, index)}
+            required={required}
+          />
+        );
+      case 'email':
+        return (
+          <Input
+            className="form input email"
+            type={field.type}
+            name={field.label}
+            value={field.value}
+            placeholder={`Enter  Email`}
             id={field.label}
             handleChange={(e) => handleValueChange(e, index)}
             required={required}
